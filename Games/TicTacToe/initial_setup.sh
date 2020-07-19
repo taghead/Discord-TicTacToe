@@ -20,13 +20,7 @@ sudo python3.6 -m pip install discord.py
 sudo python3.6 -m pip install giphy_client
 sudo python3.6 -m pip install mysql-connector
 
-#
-#https://discordapp.com/oauth2/authorize?client_id=487618066172084225&scope=bot
-#-----
-#TIC TAC TOE
-#link shortner
-#custom prefix
-#------
-# /etc/init.d/mysql start
-# /etc/init.d/mysql stop
-# /etc/init.d/mysql restart
+
+
+#Debian 9 Buster
+wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tgz

@@ -15,7 +15,4 @@ class giphy:
         gifUrl = api_response.data.image_original_url
         return (gifUrl)
 
-    #searchRandom('cheer up')# Test
-        
-
     
