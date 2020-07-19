@@ -11,7 +11,7 @@
         exit 1
     fi
 
-apt install python3-pip python3-venv
+apt install -y python3-pip python3-venv mysql-server
 python3 -m venv env
 source ./env/bin/activate 
 pip3 install -r requirements.txt
