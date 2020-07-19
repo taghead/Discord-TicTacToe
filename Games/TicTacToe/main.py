@@ -265,7 +265,7 @@ async def on_message(message):
                 linkURL = 'https://' + str(linkURL)                
             #
             # END OF Formatting and correcting linkURL
-            emb_link = discord.Embed(description= '<@' + userID + '> sent: [' + str(linkName) + ']' + '(' + str(linkURL) + ') ') 
+            emb_link = discord.Embed(description= '<@' + str(userID) + '> sent: [' + str(linkName) + ']' + '(' + str(linkURL) + ') ') 
             emb_link.set_footer(text=privCheckManageMess)
             await channel.send(embed=emb_link)
         except ValueError:
