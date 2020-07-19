@@ -175,7 +175,7 @@ async def on_message(message):
                                     msg += '\n' # Creates new line before placing A B or C
                             emb_xo = discord.Embed(
                                 description=ox + ' made a move.\n' + '```sql\n ' + msg + '```' + 'It\'s your turn ' + xo)
-                            emb_xo.set_footer(text='TicTacToe v2 | ' + privCheckManageMess)
+                            #emb_xo.set_footer(text='TicTacToe v2 | ' + privCheckManageMess)
                             await channel.send(embed=emb_xo)
                             # START OF Update Database
                             #   updates saveData in the database using the new saveData
@@ -266,7 +266,7 @@ async def on_message(message):
             #
             # END OF Formatting and correcting linkURL
             emb_link = discord.Embed(description= '<@' + str(userID) + '> sent: [' + str(linkName) + ']' + '(' + str(linkURL) + ') ') 
-            emb_link.set_footer(text=privCheckManageMess)
+            #emb_link.set_footer(text=privCheckManageMess)
             await channel.send(embed=emb_link)
         except ValueError:
             await channel.send(
