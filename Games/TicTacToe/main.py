@@ -42,6 +42,7 @@ async def on_message(message):
         return
     # START OF Commands. If statements passed here are to be considered commands
     #
+    channel = client.get_channel()
     
     ############################################################################# ServerID ########################################################################
     if message.content.startswith(config.prefix+'serverID'): # Gets server ID
