@@ -27,7 +27,7 @@ client = discord.Client()
 #   This method gets serverID of the last user
 async def getServerID(message):
     for server in client.guilds:
-        if server.id == message.server.id:
+        if server.id == message.message.guild.id
             server = server
             return server
 #
