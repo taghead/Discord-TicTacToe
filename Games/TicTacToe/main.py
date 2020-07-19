@@ -27,7 +27,7 @@ client = discord.Client()
 #   This method gets serverID of the last user
 async def getServerID(message):
     for server in client.guilds:
-        if server.id == message.message.guild.id:
+        if server.id == message.guild.id:
             server = server
             return server
 #
@@ -48,7 +48,7 @@ async def on_message(message):
     if message.content.startswith(config.prefix+'serverID'): # Gets server ID
         server = await getServerID(message)
         await channel.send(
-                                                 '**' + server.name + '\'s ID is: **`' + server.id + '`')
+                                                 '**' + server.name + '\'s ID is: **`' + str(server.id) + '`')
 
     ############################################################################ Knots&Cross ######################################################################
     if message.content.startswith(config.prefix + 'xo'): #Game of knots and crosses
@@ -79,7 +79,7 @@ async def on_message(message):
             #
             mycursor.execute("SELECT * FROM gameTicTacToe WHERE serverID = " + str(server.id)) #Queries database
             for row in mycursor: #My cursor  uses the mydb.cursor() and contains a list of arrays for each row
-                if server.id == str(row[1]): # IF serverID is the same as the databases column serverID
+                if str(server.id) == str(row[1]): # IF serverID is the same as the databases column serverID
                     if "tictactoe" == row[2]: # IF "tictactoe" is the databases column gameName
                         ID = row[0] # Sets ID to the databases sessID (row[0])
                         saveData = row[3] # Sets saveData to databases saveData[3]
