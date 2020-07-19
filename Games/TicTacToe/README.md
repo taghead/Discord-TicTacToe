@@ -21,6 +21,7 @@ Dependencies should automatically be installed using the provided installation s
     - mysql-connector   (Python Module)
 
 ## Operating System Compatability
-This bot should work as long as you have python and an SQL server. This has currently been test on the following:
+This bot should work as long as you have python and an SQL server. This has currently been tested on the following:
 - Windows
 - Ubuntu
+- Debian

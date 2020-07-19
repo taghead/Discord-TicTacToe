@@ -1,0 +1,3 @@
+mysql-connector
+giphy_client
+discord.py
