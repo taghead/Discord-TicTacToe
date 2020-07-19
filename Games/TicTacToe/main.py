@@ -27,7 +27,7 @@ client = discord.Client()
 #   This method gets serverID of the last user
 async def getServerID(message):
     for server in client.guilds:
-        if server.id == message.server.id:
+        if server.id == message.guilds.id:
             server = server
             return server
 #
@@ -55,7 +55,7 @@ async def on_message(message):
         try:
             # START OF Checks privileges
             #
-            if message.server.me.server_permissions.manage_messages:
+            if message.guilds.me.server_permissions.manage_messages:
                 await client.delete_message(message)
                 privCheckManageMess = " "
             else:
@@ -209,7 +209,7 @@ async def on_message(message):
         try:
             # START OF Checks privileges
             #
-            if message.server.me.server_permissions.manage_messages:
+            if message.guilds.me.server_permissions.manage_messages:
                 await client.delete_message(message)
                 privCheckManageMess = " "
             else:
@@ -293,7 +293,7 @@ async def on_message(message):
 
     ################################################################################ WALL #########################################################################
     if message.content.startswith(config.prefix + 'wall'): #Build a 4x4 Wall mentioning the user
-        usrMen = '<@' + message.mentions[0].id + '> '  # Saves mentioned user into usrMen variable
+        usrMen = '<@' + str(message.mentions[0].id) + '> '  # Saves mentioned user into usrMen variable
         if message.content.startswith(config.prefix + 'wall @everyone'):
             await channel.send('Don\'t @everone please, it hurts people.')
         else:
