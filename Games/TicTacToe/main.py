@@ -46,7 +46,7 @@ async def on_message(message):
     ############################################################################# ServerID ########################################################################
     if message.content.startswith(config.prefix+'serverID'): # Gets server ID
         server = await getServerID(message)
-        await client.send(message.channel,
+        await channel.send(message.channel,
                                                  '**' + server.name + '\'s ID is: **`' + server.id + '`')
 
     ############################################################################ Knots&Cross ######################################################################
@@ -88,7 +88,7 @@ async def on_message(message):
                                                     # to the data in saveData example data grid = ['X', 'O', '-', '-', '-', 'X', '-', '-', '-']
                         found = True # Used to validate if server was found in database and create a entry
             if not found:
-                await client.send(message.channel,
+                await channel.send(message.channel,
                                         'Oh hey, it\'s this servers first time using this check out ' + config.prefix + ' xo help')
                 saveData = grid[0] + grid[1] + grid[2] + grid[3] + grid[4] + grid[5] + grid[6] + grid[7] + grid[8] # Sets database to default saveData
                 mycursor.execute("INSERT INTO gameTicTacToe (serverID, gameName, saveData, saveData0) VALUES (%s, %s, %s, %s)", # Executes query to insert default data into Database Row
@@ -113,7 +113,7 @@ async def on_message(message):
                                         '\n\n The syntax for placing your X/O is `' + config.prefix + 
                                         ' xo [A/B/C][1/2/3]`. \nWorking exmaple `' + config.prefix + ' xo A1`' +
                                         '\n\n To do a new game type ' + config.prefix + ' xo new')
-                await client.send(message.channel, embed=emb_xo_help)
+                await channel.send(message.channel, embed=emb_xo_help)
                                         
             #
             # END OF User Input
@@ -128,7 +128,7 @@ async def on_message(message):
                     saveData = grid[0] + grid[1] + grid[2] + grid[3] + grid[4] + grid[5] + grid[6] + grid[7] + grid[8]
                     mycursor.execute("UPDATE gameTicTacToe SET saveData = %s WHERE sessID = %s", (str(saveData), str(ID)))
                     mydb.commit()
-                    await client.send(message.channel, 'All right, the board is cleaned.')
+                    await channel.send(message.channel, 'All right, the board is cleaned.')
                 #
                 # END OF New game
 
@@ -148,7 +148,7 @@ async def on_message(message):
                             #   Checks if grid location already contains X O x o
                             if grid[locationXO] == 'x' or grid[locationXO] == 'X' or grid[locationXO] == 'O' or grid[
                                 locationXO] == 'o':
-                                await client.send(message.channel,
+                                await channel.send(message.channel,
                                                         'Nice try, but you can\'t kill off ' + grid[
                                                             locationXO] + ' like that. Try again.')
                                 ox = xo
@@ -175,7 +175,7 @@ async def on_message(message):
                             emb_xo = discord.Embed(
                                 description=ox + ' made a move.\n' + '```sql\n ' + msg + '```' + 'It\'s your turn ' + xo)
                             emb_xo.set_footer(text='TicTacToe v2 | ' + privCheckManageMess)
-                            await client.send(message.channel, embed=emb_xo)
+                            await channel.send(message.channel, embed=emb_xo)
                             # START OF Update Database
                             #   updates saveData in the database using the new saveData
                             saveData = grid[0] + grid[1] + grid[2] + grid[3] + grid[4] + grid[5] + grid[6] + grid[7] + grid[
@@ -188,15 +188,15 @@ async def on_message(message):
                             #
                             # END OF Update Database
                         else: # Fail Safe ensures correct input in userIn[0]
-                            await client.send(message.channel,
+                            await channel.send(message.channel,
                                                     'Something went wrong... remember the rows are 1,2 or 3. Example command ` ' 
                                                     + config.prefix + 'xo C3`')
                     else: # Fail Safe ensures correct input in userIn[1]
-                        await client.send(message.channel,
+                        await channel.send(message.channel,
                                                 'Something went wrong... remember the rows are A,B or C. Example command `' 
                                                 + config.prefix + 'xo B2`')
                 else: # Fail Safe ensures X X o o are the only thing received from the database
-                    await client.send(message.channel,
+                    await channel.send(message.channel,
                                             'Please use X or O. Example command ` ' + config.prefix + 'xo A1`')
         except:
             pass
@@ -266,9 +266,9 @@ async def on_message(message):
             # END OF Formatting and correcting linkURL
             emb_link = discord.Embed(description= '<@' + userID + '> sent: [' + str(linkName) + ']' + '(' + str(linkURL) + ') ') 
             emb_link.set_footer(text=privCheckManageMess)
-            await client.send(message.channel, embed=emb_link)
+            await channel.send(message.channel, embed=emb_link)
         except ValueError:
-            await client.send(message.channel, 
+            await channel.send(message.channel, 
                                                     'Use the following syntax ```' + config.prefix + 'link [Name] | [URL]\n' +
                                                     '```Working example```' + config.prefix + 'link Google | google.com```')
 
@@ -282,26 +282,26 @@ async def on_message(message):
             emb_gif.set_image(url=gifUrl)
             emb_gif.set_footer(text='powered by Giphy')
             emb_gif.set_thumbnail(url='https://media.giphy.com/media/3o6gbbuLW76jkt8vIc/giphy.gif')
-            await client.send(message.channel, embed=emb_gif)
+            await channel.send(message.channel, embed=emb_gif)
         except:
             gifInvalidURL = str('https://giphy.com/search/'+usrMes[1:])
             emb_gif = discord.Embed(description='**Ring ring, ring ring.... the number**:' + 
             '***['+str(usrMes)+']('+gifInvalidURL+')*** \ncould not reached (BAD REQUEST ERROR 400)')
             emb_gif.set_footer(text='powered by Giphy')
-            await client.send(message.channel, embed=emb_gif)
+            await channel.send(message.channel, embed=emb_gif)
 
     ################################################################################ WALL #########################################################################
     if message.content.startswith(config.prefix + 'wall'): #Build a 4x4 Wall mentioning the user
         usrMen = '<@' + message.mentions[0].id + '> '  # Saves mentioned user into usrMen variable
         if message.content.startswith(config.prefix + 'wall @everyone'):
-            await client.send(message.channel, 'Don\'t @everone please, it hurts people.')
+            await channel.send(message.channel, 'Don\'t @everone please, it hurts people.')
         else:
-            await client.send(message.channel, 'building a wall...')
+            await channel.send(message.channel, 'building a wall...')
             tmpUsrMen = usrMen + usrMen + usrMen + usrMen + '\n'
             for x in range(3):
                 tmpUsrMen += tmpUsrMen
             emb_wall = discord.Embed(description=tmpUsrMen)
-            await client.send(message.channel, embed=emb_wall)
+            await channel.send(message.channel, embed=emb_wall)
 
     ################################################################################ HELP #########################################################################
     if message.content.startswith(config.prefix + 'help'): #Displays help
@@ -321,7 +321,7 @@ async def on_message(message):
                            value='\n \n **If by help you meant commands try the following**\n' + showCLA, inline=False)
         emb_help.add_field(name='------------', value='\n \n **WIP currently not enabled**\n' + showCDLA, inline=False)
         emb_help.set_thumbnail(url=gifUrl)
-        await client.send(message.channel, embed=emb_help)
+        await channel.send(message.channel, embed=emb_help)
     #
     # END OF Commands IF statements.
 #
