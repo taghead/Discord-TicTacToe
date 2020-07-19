@@ -27,7 +27,7 @@ client = discord.Client()
 #   This method gets serverID of the last user
 async def getServerID(message):
     for server in client.guilds:
-        if server.id == message.guilds.id:
+        if server.id == message.server.id:
             server = server
             return server
 #
@@ -55,11 +55,11 @@ async def on_message(message):
         try:
             # START OF Checks privileges
             #
-            if message.guilds.me.server_permissions.manage_messages:
-                await client.delete_message(message)
-                privCheckManageMess = " "
-            else:
-                privCheckManageMess = "Please allow me to Manage Messages so I can delete user input"
+            #if message.guilds.me.server_permissions.manage_messages:
+            #    await client.delete_message(message)
+            #    privCheckManageMess = " "
+            #else:
+            #    privCheckManageMess = "Please allow me to Manage Messages so I can delete user input"
             # 
             # END OF Check privileges
             
@@ -209,11 +209,11 @@ async def on_message(message):
         try:
             # START OF Checks privileges
             #
-            if message.guilds.me.server_permissions.manage_messages:
-                await client.delete_message(message)
-                privCheckManageMess = " "
-            else:
-                privCheckManageMess = "Please allow me to Manage Messages so I can delete user input"
+            #if message.guilds.me.server_permissions.manage_messages:
+            #    await client.delete_message(message)
+            #    privCheckManageMess = " "
+            #else:
+            #    privCheckManageMess = "Please allow me to Manage Messages so I can delete user input"
             # 
             # END OF Checks privileges
 
