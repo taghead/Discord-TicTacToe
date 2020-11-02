@@ -29,3 +29,14 @@ Dependencies should automatically be installed using the provided installation s
 This bot should work as long as you have python and an SQL server. This has currently been tested on the following:
 - Ubuntu
 - Debian
+
+## Checking out folder
+```
+mkdir src
+cd src
+git init
+git remote add -f origin https://gitlab.com/Taghead/TagheadDiscordBotCollection.git
+git config core.sparseCheckout true
+echo "Games/TicTacToe" >> .git/info/sparse-checkout
+git pull origin master
+```
