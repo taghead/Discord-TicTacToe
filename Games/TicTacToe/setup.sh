@@ -44,7 +44,7 @@ fi
 if [ -z ${PREFIX+x} ]; 
 then 
     echo "PREFIX is unset... setting PREFIX to default";
-    PREFIX="\"@ZN\""; 
+    PREFIX="input(\"Prefix:\")"; 
 else 
     echo "PREFIX is set to '$PREFIX'";
     PREFIX="\"$PREFIX"\"
@@ -53,7 +53,7 @@ fi
 if [ -z ${SQLHOST+x} ]; 
 then 
     echo "SQLHOST is unset... setting SQLHOST to default";
-    SQLHOST="\"localhost\""; 
+    SQLHOST="input(\"My SQL server ip:\")"; 
 else 
     echo "SQLHOST is set to '$SQLHOST'";
     SQLHOST="\"$SQLHOST"\"
@@ -62,7 +62,7 @@ fi
 if [ -z ${SQLUSER+x} ]; 
 then 
     echo "SQLUSER is unset... setting SQLUSER to default";
-    SQLUSER="\"normalUser\""; 
+    SQLUSER="input(\"My SQL database username:\")"; ; 
 else 
     echo "SQLUSER is set to '$SQLUSER'";
     SQLUSER="\"$SQLUSER"\"
@@ -71,7 +71,7 @@ fi
 if [ -z ${SQLPASS+x} ]; 
 then 
     echo "SQLPASS is unset... setting SQLPASS to default";
-    SQLPASS="\"1234\""; 
+    SQLPASS="input(\"My SQL users password:\")"; 
 else 
     echo "SQLPASS is set to '$SQLPASS'";
     SQLPASS="\"$SQLPASS"\"
@@ -80,7 +80,7 @@ fi
 if [ -z ${SQLDATABASE+x} ]; 
 then 
     echo "SQLDATABASE is unset... setting SQLDATABASE to default";
-    SQLDATABASE="\"practice\""; 
+    SQLDATABASE="input(\"My SQL database name:\")";  
 else 
     echo "SQLDATABASE is set to '$SQLDATABASE'";
     SQLDATABASE="\"$SQLDATABASE"\"
