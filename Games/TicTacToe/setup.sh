@@ -62,7 +62,7 @@ fi
 if [ -z ${SQLUSER+x} ]; 
 then 
     echo "SQLUSER is unset... setting SQLUSER to default";
-    SQLUSER="input(\"My SQL database username:\")"; ; 
+    SQLUSER="input(\"My SQL database username:\")"; 
 else 
     echo "SQLUSER is set to '$SQLUSER'";
     SQLUSER="\"$SQLUSER"\"
