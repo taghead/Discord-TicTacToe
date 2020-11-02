@@ -1,11 +1,6 @@
 # TIC TAC TOE
 
-## Guide
-- Start with setting up the dependencies and packages required for the bot by running `chmod 700 ./setup.sh; ./setup.sh;` as root or with sudo.  
-- Now configure the SQL server using the following commands. `mysql -p -u root` > Enter > `use mysql;` now copy all the lines under line 4 in #practiceCreateUsers.sql and finally copy the entire #practiceCreate.sql into it. Exit mysql now.
-- Finally run `python main.py`
-- 
-## Config
+## Config file
 - The giphy and bot token will be prompted to you on startup. The sqlHost, sqlUser, sqlPassword and sqlDatabase are the default values currently hardcoded into #practiceCreateUsers. So the only variable that can be changed if you want an easy setup is the prefix. 
 ```python
 class config:
@@ -29,8 +24,10 @@ Dependencies should automatically be installed using the provided installation s
 This bot should work as long as you have python and an SQL server. This has currently been tested on the following:
 - Ubuntu
 - Debian
+- DietPi
+- DietPi using Docker
 
-## Using the setup script
+## Setup using the setup script
 The setup script requires the following environement variables
 ```shell
 # Environemnt variables required
@@ -49,7 +46,7 @@ chmod +x /tmp/setup.sh
 /tmp/setup.sh
 ```
 
-## Using the dockerfile
+## Setup using the dockerfile ( Must be built )
 Checkout Files
 ```shell
 mkdir src
@@ -61,10 +58,9 @@ echo "Games/TicTacToe" >> .git/info/sparse-checkout
 git pull origin master
 cd Games/TicTacToe
 ```
-
 Build the docker image
 ```shell
-docker build .
+docker build . -t ttt_discord_bot:latest
 ```
 
 Run the docker image and apply environment variables
@@ -87,7 +83,7 @@ docker run -it \
     -e SQLUSER=<Username for SQL Database here> \
     -e SQLPASS=<Password for SQL Database here> \
     -e SQLDATABASE=<SQL Database Name> \
-    b0a351f1d915
+    ttt_discord_bot:latest
 ```
 
 Populated example
@@ -100,5 +96,5 @@ docker run -it \
     -e SQLUSER=User \
     -e SQLPASS=Password \
     -e SQLDATABASE=Bot \
-    b0a351f1d915
+    ttt_discord_bot:latest
     ```
