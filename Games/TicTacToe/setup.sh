@@ -94,7 +94,7 @@ class config:
     sqlUser = "$SQLUSER"
     sqlPassword = "$SQLPASS" 
     sqlDatabase = "$SQLDATABASE" 
-"
+" > Games/TicTacToe/config.py
 
 unset DISCORDTOKEN
 unset GIPHYTOKEN
