@@ -5,12 +5,14 @@
     elif [[ $EUID == 0 ]]
     then
         echo """ 
-        The script runs optimally as a root user. Please run as root or sudo.
-        If you wish to ignore this and proceed use --ignore as the first flag.
+        This script runs optimally as a root user. Please run as root or sudo.
+        If you wish to ignore this wait 10 seconds for the code to continue,
+        else press CTRL+C.
         """
-        exit 1
+        sleep 10
     fi
 
+cd ~
 
 # Environemnt variables required
 # DISCORDTOKEN 	- Contains discord bot api token
@@ -27,6 +29,7 @@ then
     DISCORDTOKEN="input(\"Discord Bot Token:\")"; 
 else 
     echo "DISCORDTOKEN is set to '$DISCORDTOKEN'";
+    DISCORDTOKEN="\"$DISCORDTOKEN"\"
 fi
 
 if [ -z ${GIPHYTOKEN+x} ]; 
@@ -35,6 +38,7 @@ then
     GIPHYTOKEN="input(\"Giphy Token:\")"; 
 else 
     echo "GIPHYTOKEN is set to '$GIPHYTOKEN'";
+    GIPHYTOKEN="\"$GIPHYTOKEN"\"
 fi
 
 if [ -z ${PREFIX+x} ]; 
@@ -43,6 +47,7 @@ then
     PREFIX="\"@ZN\""; 
 else 
     echo "PREFIX is set to '$PREFIX'";
+    PREFIX="\"$PREFIX"\"
 fi
 
 if [ -z ${SQLHOST+x} ]; 
@@ -51,6 +56,7 @@ then
     SQLHOST="\"localhost\""; 
 else 
     echo "SQLHOST is set to '$SQLHOST'";
+    SQLHOST="\"$SQLHOST"\"
 fi
 
 if [ -z ${SQLUSER+x} ]; 
@@ -59,6 +65,7 @@ then
     SQLUSER="\"normalUser\""; 
 else 
     echo "SQLUSER is set to '$SQLUSER'";
+    SQLUSER="\"$SQLUSER"\"
 fi
 
 if [ -z ${SQLPASS+x} ]; 
@@ -67,6 +74,7 @@ then
     SQLPASS="\"1234\""; 
 else 
     echo "SQLPASS is set to '$SQLPASS'";
+    SQLPASS="\"$SQLPASS"\"
 fi
 
 if [ -z ${SQLDATABASE+x} ]; 
@@ -75,6 +83,7 @@ then
     SQLDATABASE="\"practice\""; 
 else 
     echo "SQLDATABASE is set to '$SQLDATABASE'";
+    SQLDATABASE="\"$SQLDATABASE"\"
 fi
 
 mkdir src
@@ -110,3 +119,4 @@ apt install -y python3-pip python3-venv mysql-server
 python3 -m venv env
 source ./env/bin/activate 
 pip3 install -r requirements.txt
+python main.py
