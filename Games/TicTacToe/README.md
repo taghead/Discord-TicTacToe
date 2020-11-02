@@ -30,13 +30,21 @@ This bot should work as long as you have python and an SQL server. This has curr
 - Ubuntu
 - Debian
 
-## Checking out folder
+## Using the setup script
+The setup script requires the following environement variables
 ```
-mkdir src
-cd src
-git init
-git remote add -f origin https://gitlab.com/Taghead/TagheadDiscordBotCollection.git
-git config core.sparseCheckout true
-echo "Games/TicTacToe" >> .git/info/sparse-checkout
-git pull origin master
+# Environemnt variables required
+# DISCORDTOKEN 	- Contains discord bot api token
+# GIPHYTOKEN 	- Contains giphy api token
+# PREFIX        - Bot prefix
+# SQLHOST 	    - Contains SQL host ip
+# SQLUSER	    - Contains username for SQL Database
+# SQLPASS	    - Contains password for SQL Database
+# SQLDATABASE	- Contains database name
+```
+Once the environement variables are declared run the script.
+```
+wget -O /tmp/setup.sh https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/setup.sh
+chmod +x /tmp/setup.sh
+/tmp/setup.sh
 ```
