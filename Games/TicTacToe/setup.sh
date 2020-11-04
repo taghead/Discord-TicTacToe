@@ -7,35 +7,37 @@ SKIP_CHECK_ENVIRONMENT_VARIABLES=0
 for arg in "$@"
 do
     case "$arg" in
-        -i|--ignore)
-        IGNORE_ROOT=1
-        shift
-        ;;
+        -ir|--ignore-root)
+            IGNORE_ROOT=1
+            echo " Ignoring root user status"
+            shift
+            ;;
         -se|--skip-environment)
-        SKIP_CHECK_ENVIRONMENT_VARIABLES=1
-        echo "Skipping environment variables check"
-        shift
-        ;;
+            SKIP_CHECK_ENVIRONMENT_VARIABLES=1
+            echo "Skipping environment variables check"
+            shift
+            ;;
+        -c=*|--cache=*)
+            CACHE_DIRECTORY="${arg#*=}"
+            shift # Remove --cache= from processing
+            ;;
         -h|--help)
-        echo """ARGUMENTS
-        -i  --ignore
-        -se --skip-environment
-        -h  --help
-        """
-        exit 0
-        shift
-        ;;
+            echo """ARGUMENTS
+            -ir  --ignore-root      | Ignores user privileges check
+            -se --skip-environment  | Skips environment variables check
+            -h  --help              | Helps
+            """
+            exit 0
+            shift
+            ;;
         *)
-        OTHER_ARGUMENTS+="$1"
-        shift # Remove generic argument from processing
-        ;;
+            OTHER_ARGUMENTS+="$1"
+            shift # Remove generic argument from processing
+            ;;
     esac
 done
 
-if [ "$IGNORE_ROOT" -eq 1 ]
-then
-    echo " Ignoring root user status"
-elif [ "$(id -u)" -ne "0" ];
+if [ "$(id -u)" -ne "0" -a "$IGNORE_ROOT" -eq 0 ];
 then
     echo """
     This script runs optimally as a root user. Please run as root or sudo.
