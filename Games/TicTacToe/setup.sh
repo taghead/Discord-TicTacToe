@@ -25,7 +25,7 @@ done
 if [ $IGNORE_ROOT -eq 1 ]
 then
     echo " Ignoring root user status"
-elif [[ $EUID -eq 0 ]]
+elif [ $EUID -eq 0 ]
 then
     echo """ 
     This script runs optimally as a root user. Please run as root or sudo.
