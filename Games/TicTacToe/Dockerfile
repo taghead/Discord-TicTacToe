@@ -1,7 +1,7 @@
 FROM python
 WORKDIR /root
-COPY requirements.txt requirements.txt
+RUN wget -O - https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/blob/master/Games/TicTacToe/requirements.txt
+RUN wget -O - https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/blob/master/Games/TicTacToe/setup.sh
 RUN pip install -r requirements.txt
-COPY setup.sh setup.sh
 RUN chmod +x /root/setup.sh
 CMD ["/root/setup.sh"]

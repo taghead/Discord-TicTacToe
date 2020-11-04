@@ -1,16 +1,39 @@
 #!/bin/sh
-    if [ "$1" == "--ignore" ]
-    then
-        echo " Ignoring root user status"
-    elif [[ $EUID == 0 ]]
-    then
-        echo """ 
-        This script runs optimally as a root user. Please run as root or sudo.
-        If you wish to ignore this wait 10 seconds for the code to continue,
-        else press CTRL+C.
-        """
-        sleep 10
-    fi
+
+IGNORE_ROOT=0
+
+# Loop through arguments and process them
+for arg in "$@"
+do
+    case $arg in
+        -i|--ignore)
+        IGNORE_ROOT=1
+        shift
+        ;;
+        -r|--root)
+        ROOT_DIRECTORY="$2"
+        shift # Remove argument name from processing
+        shift # Remove argument value from processing
+        ;;
+        *)
+        OTHER_ARGUMENTS+="$1"
+        shift # Remove generic argument from processing
+        ;;
+    esac
+done
+
+if [ $IGNORE_ROOT -eq 1 ]
+then
+    echo " Ignoring root user status"
+elif [[ $EUID -eq 0 ]]
+then
+    echo """ 
+    This script runs optimally as a root user. Please run as root or sudo.
+    If you wish to ignore this wait 10 seconds for the code to continue,
+    else press CTRL+C.
+    """
+    sleep 10
+fi
 
 cd ~
 
