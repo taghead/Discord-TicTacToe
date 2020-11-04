@@ -1,3 +1,4 @@
+
 #!/bin/sh
 
 IGNORE_ROOT=0
@@ -5,7 +6,7 @@ IGNORE_ROOT=0
 # Loop through arguments and process them
 for arg in "$@"
 do
-    case $arg in
+    case "$arg" in
         -i|--ignore)
         IGNORE_ROOT=1
         shift
@@ -22,12 +23,12 @@ do
     esac
 done
 
-if [ $IGNORE_ROOT -eq 1 ]
+if [ "$IGNORE_ROOT" -eq 1 ]
 then
     echo " Ignoring root user status"
-elif [ $EUID -eq 0 ]
+elif [ "$(id -u)" -ne "0" ];
 then
-    echo """ 
+    echo """
     This script runs optimally as a root user. Please run as root or sudo.
     If you wish to ignore this wait 10 seconds for the code to continue,
     else press CTRL+C.
