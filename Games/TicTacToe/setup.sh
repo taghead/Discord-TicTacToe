@@ -2,7 +2,8 @@
 
 IGNORE_ROOT=0
 SKIP_CHECK_ENVIRONMENT_VARIABLES=0
-SETUP_PATH_DIRECTORY="~/TagheadDiscordBotCollection"
+SETUP_PATH_DIRECTORY="$HOME/TagheadDiscordBotCollection"
+START_AFTER_INSTALL=0
 
 # Loop through arguments and process them
 for arg in "$@"
@@ -26,11 +27,17 @@ do
             [ ! -d ${arg#*=} ] && echo "Unable to make directory ${arg#*=}" && exit 0
             shift
             ;;
+        -s|-start)
+            echo "Starting application after install"
+            START_AFTER_INSTALL=1
+            shift
+            ;;
         -h|--help)
             echo """ARGUMENTS
-            -ir  --ignore-root      | Ignores user privileges check
+            -ir --ignore-root       | Ignores user privileges check
             -se --skip-environment  | Skips environment variables check
-            -p=  --path=            | Set install path. Example -p=/opt/bot
+            -p= --path=             | Set install path. Example -p=/opt/bot
+            -s  --start             | Start application after install
             -h  --help              | Helps
             """
             exit 0
@@ -135,6 +142,7 @@ git remote add -f origin https://gitlab.com/Taghead/TagheadDiscordBotCollection.
 git config core.sparseCheckout true
 echo "Games/TicTacToe" >> .git/info/sparse-checkout
 git pull origin master
+rm -R "$SETUP_PATH_DIRECTORY/.git"
 
 echo "
 class config:
@@ -161,4 +169,5 @@ apt install -y python3-pip python3-venv mysql-server
 python3 -m venv env
 source ./env/bin/activate 
 pip3 install -r requirements.txt
-python main.py
+
+if [ "$START_AFTER_INSTALL" -eq 1 ]; then python main.py fi
