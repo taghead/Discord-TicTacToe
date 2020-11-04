@@ -2,6 +2,7 @@
 
 IGNORE_ROOT=0
 SKIP_CHECK_ENVIRONMENT_VARIABLES=0
+SETUP_PATH_DIRECTORY="~"
 
 # Loop through arguments and process them
 for arg in "$@"
@@ -17,14 +18,19 @@ do
             echo "Skipping environment variables check"
             shift
             ;;
-        -c=*|--cache=*)
-            CACHE_DIRECTORY="${arg#*=}"
-            shift # Remove --cache= from processing
+        -p=*|--path=*)
+            SETUP_PATH_DIRECTORY="${arg#*=}"
+            echo "Setting up in ${arg#*=} as the path"
+            [ -d ${arg#*=} ] && echo "Path ${arg#*=} exists."
+            [ ! -d ${arg#*=} ] && echo "Path does not exists... making path ${arg#*=}" && mkdir ${arg#*=}
+            [ ! -d ${arg#*=} ] && echo "Unable to make directory ${arg#*=}" && exit 0
+            shift
             ;;
         -h|--help)
             echo """ARGUMENTS
             -ir  --ignore-root      | Ignores user privileges check
             -se --skip-environment  | Skips environment variables check
+            -p=  --path=            | Set install path. Example -p=/opt/bot
             -h  --help              | Helps
             """
             exit 0
