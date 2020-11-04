@@ -165,9 +165,13 @@ unset SQLDATABASE
 
 cd Games/TicTacToe
 
-apt install -y python3-pip python3-venv mysql-server
+apt-get install -y python3-pip python3-venv
 python3 -m venv env
-source ./env/bin/activate 
+if [ "$SHELL"=="/bin/zsh" ]; then chmod +x ./env/bin/activate && ./env/bin/activate
+elif [ "$SHELL"=="/bin/sh" ]; then chmod +x ./env/bin/activate && ./env/bin/activate
+elif [ "$SHELL"=="/bin/bash" ]; then source ./env/bin/activate
+else source ./env/bin/activate
+fi
 pip3 install -r requirements.txt
 
-if [ "$START_AFTER_INSTALL" -eq 1 ]; then python main.py fi
+if [ "$START_AFTER_INSTALL" -eq 1 ]; then python main.py; fi
