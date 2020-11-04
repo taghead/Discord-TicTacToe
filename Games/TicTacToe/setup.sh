@@ -2,7 +2,7 @@
 
 IGNORE_ROOT=0
 SKIP_CHECK_ENVIRONMENT_VARIABLES=0
-SETUP_PATH_DIRECTORY="~"
+SETUP_PATH_DIRECTORY="~/TagheadDiscordBotCollection"
 
 # Loop through arguments and process them
 for arg in "$@"
@@ -52,8 +52,6 @@ then
     """
     sleep 10
 fi
-
-cd ~
 
 if [ "$SKIP_CHECK_ENVIRONMENT_VARIABLES" -eq 0 ]
 then
@@ -130,8 +128,8 @@ then
     fi
 fi
 
-mkdir src
-cd src
+mkdir "$SETUP_PATH_DIRECTORY"
+cd "$SETUP_PATH_DIRECTORY"
 git init
 git remote add -f origin https://gitlab.com/Taghead/TagheadDiscordBotCollection.git
 git config core.sparseCheckout true
