@@ -1,4 +1,28 @@
-# TIC TAC TOE
+### About TicTacToe bot
+
+TicTacToe bot contains the following commands.
+
+```
+@ZN help            | Calls the police
+@ZN wall @username  | Builds a wall
+@ZN gif             | Search for a gif
+@ZN link            | embeds link
+@ZN serverID        | Gets current server id
+@ZN xo              | TicTacToe
+```
+
+This repository was originally created as a fun way to play around with Python, Discord.py and MySQL. 
+
+At this point it's maintaince is only done irregularly. New features will be added when I need to refresh my programming skills.
+
+### Operating System Compatability
+This bot should work as long as you have python and an SQL server. This has currently been tested on the following:
+- Ubuntu
+- Debian
+- DietPi
+- DietPi using Docker
+
+It can be assumed that this will likely work on most Ubuntu and Debian distros.
 
 > **Environment Variables**
 > The following variables are optional to declare, though doing so will prevent prompts from occuring when running the application. Applying the variables will allow the [setup.sh](/Games/TicTacToe/setup.sh) to set the values in [config.py](/Games/TicTacToe/config.py). 
@@ -9,19 +33,19 @@
 > > `SQLUSER`	    *- Contains username for SQL Database*
 > > `SQLPASS`	    *- Contains password for SQL Database*
 > > `SQLDATABASE`	*- Contains database name*
+> 
+> To help put it into perspective content here is the default [config.py](/Games/TicTacToe/config.py).
+>```python
+>class config:
+>    token = input("Discord Bot Token:")                         # Discord Bot Token
+>    giphy_token = input("Giphy Token:")                         # Giphy API token
+>    prefix = input("Bot prefix:")                               # Replace this with your desired prefix
+>    sqlHost = input("My SQL server ip:")                        # Manually installed SQL onto another device
+>    sqlUser = input("My SQL database user")                     # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
+>    sqlPassword = input("My SQL database user password:")       # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
+>    sqlDatabase = input("My SQL database password:")            # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
+>```
 
-## Config file
-- The giphy and bot token will be prompted to you on startup. The sqlHost, sqlUser, sqlPassword and sqlDatabase are the default values currently hardcoded into #practiceCreateUsers. So the only variable that can be changed if you want an easy setup is the prefix. 
-```python
-class config:
-    token = input("Discord Bot Token:")
-    giphy_token = input("Giphy Token:")
-    prefix = "@ZN "             # Replace this with your desired prefix
-    sqlHost = "localhost"       # Manually installed SQL onto another device
-    sqlUser = "normalUser"      # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
-    sqlPassword = "1234"        # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
-    sqlDatabase = "practice"    # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
-```
 
 ## Dependencies
 Dependencies should automatically be installed using the provided installation scripts setup.sh but just in case here is a list.
@@ -30,12 +54,7 @@ Dependencies should automatically be installed using the provided installation s
     - giphy_client      (Python Module)
     - mysql-connector   (Python Module)
 
-## Operating System Compatability
-This bot should work as long as you have python and an SQL server. This has currently been tested on the following:
-- Ubuntu
-- Debian
-- DietPi
-- DietPi using Docker
+
 
 ## Setup using the setup script
 The setup script requires the following environement variables
