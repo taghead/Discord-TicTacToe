@@ -47,54 +47,40 @@ chmod +x /tmp/setup.sh
 ```
 
 ## Setup using the dockerfile ( Must be built )
-Checkout Files
-```shell
-mkdir src
-cd src
-git init
-git remote add -f origin https://gitlab.com/Taghead/TagheadDiscordBotCollection.git
-git config core.sparseCheckout true
-echo "Games/TicTacToe" >> .git/info/sparse-checkout
-git pull origin master
-cd Games/TicTacToe
+Get required files
 ```
-Build the docker image
+wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/Dockerfile
+wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/blob/master/Games/TicTacToe/requirements.txt
+wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/setup.sh
+
+```
+
+####Build the docker image
 ```shell
 docker build . -t ttt_discord_bot:latest
 ```
 
-Run the docker image and apply environment variables
+#### Run the docker image and apply environment variables
 
-```shell
-# Environemnt variables required
-# DISCORDTOKEN 	- Contains discord bot api token
-# GIPHYTOKEN 	- Contains giphy api token
-# PREFIX        - Bot prefix
-# SQLHOST 	    - Contains SQL host ip
-# SQLUSER	    - Contains username for SQL Database
-# SQLPASS	    - Contains password for SQL Database
-# SQLDATABASE	- Contains database name
-
-docker run -it \ 
-    -e DISCORDTOKEN=<Discord Token Here> \
-    -e GIPHYTOKEN=<Giphy Token Here> \
-    -e PREFIX=<Bot Prefix Here> \
-    -e SQLHOST=<SQL Host ip address here> \
-    -e SQLUSER=<Username for SQL Database here> \
-    -e SQLPASS=<Password for SQL Database here> \
-    -e SQLDATABASE=<SQL Database Name> \
-    ttt_discord_bot:latest
-```
-
-Populated example
-```shell
-docker run -it \ 
-    -e DISCORDTOKEN=2132h31b87dh912he.o123532ADSADVsqaw1423 \
-    -e GIPHYTOKEN=AUhd82nJKADH133 \
-    -e PREFIX=@ZN \
-    -e SQLHOST=127.0.0.1 \
-    -e SQLUSER=User \
-    -e SQLPASS=Password \
-    -e SQLDATABASE=Bot \
-    ttt_discord_bot:latest
-    ```
+> In this step you will be passing the following variables into the docker container
+>
+> `DISCORDTOKEN`*- Contains discord bot api token*
+> `GIPHYTOKEN` 	*- Contains giphy api token*
+> `PREFIX`      *- Bot prefix*
+> `SQLHOST` 	*- Contains SQL host ip*
+> `SQLUSER`	    *- Contains username for SQL Database*
+> `SQLPASS`	    *- Contains password for SQL Database*
+> `SQLDATABASE`	*- Contains database name*
+> 
+> Run the following
+> ```shell
+> docker run -it \ 
+>     -e DISCORDTOKEN=<Discord Token Here> \
+>     -e GIPHYTOKEN=<Giphy Token Here> \
+>     -e PREFIX=<Bot Prefix Here> \
+>     -e SQLHOST=<SQL Host ip address here> \
+>     -e SQLUSER=<Username for SQL Database here> \
+>     -e SQLPASS=<Password for SQL Database here> \
+>     -e SQLDATABASE=<SQL Database Name> \
+>     ttt_discord_bot:latest
+> ```
