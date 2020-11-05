@@ -128,11 +128,12 @@ do
             ;;
         -snc|--start-new-config)
             echo "Starting application after applying new configuration"
-            
+            applyconfig
+            python "$SETUP_PATH_DIRECTORY/$PATH_TO_FILES/main.py"
             shift
             ;;
         -h|--help)
-            echo -e """
+            echo """
             \nEnvironment Variables
                 These variables are used to configure the config.py, not
                 declaring a variable will default it to an input prompt
@@ -160,8 +161,8 @@ do
             shift
             ;;
         *)
-            OTHER_ARGUMENTS+="$1"
-            shift # Remove generic argument from processing
+            echo "Argument ... $1 ... does not exist."
+            shift
             ;;
     esac
 done
