@@ -1,5 +1,15 @@
 # TIC TAC TOE
 
+> **Environment Variables**
+> The following variables are optional to declare, though doing so will prevent prompts from occuring when running the application. Applying the variables will allow the [setup.sh](/Games/TicTacToe/setup.sh) to set the values in [config.py](/Games/TicTacToe/config.py). 
+> > `DISCORDTOKEN`  *- Contains discord bot api token*
+> > `GIPHYTOKEN` 	*- Contains giphy api token*
+> > `PREFIX`        *- Bot prefix*
+> > `SQLHOST` 	    *- Contains SQL host ip*
+> > `SQLUSER`	    *- Contains username for SQL Database*
+> > `SQLPASS`	    *- Contains password for SQL Database*
+> > `SQLDATABASE`	*- Contains database name*
+
 ## Config file
 - The giphy and bot token will be prompted to you on startup. The sqlHost, sqlUser, sqlPassword and sqlDatabase are the default values currently hardcoded into #practiceCreateUsers. So the only variable that can be changed if you want an easy setup is the prefix. 
 ```python
