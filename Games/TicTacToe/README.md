@@ -69,7 +69,7 @@ chmod +x /tmp/setup.sh
 ##### *Get required files*
 ```shell
 wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/Dockerfile
-wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/blob/master/Games/TicTacToe/requirements.txt
+wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/requirements.txt
 wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/setup.sh
 
 ```
