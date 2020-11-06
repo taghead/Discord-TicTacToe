@@ -39,11 +39,13 @@ You must also have bot a Discord Bot Token https://discord.com/developers/docs/i
 
 Option 1: WGET
 
+Using wget will require you to extract the files manually
+
 ```powershell
 wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/archive/master/TagheadDiscordBotCollection-master.zip
 ```
 
-Extract the files
+
 
 Option 2: GIT ( Requires git to be installed )
 
@@ -75,22 +77,19 @@ This assumes your current directory is /path/to/Bot/Games/TicTacToe.
 | Linux (Ubuntu/Debian ZSH/SH)| Run `chmod +x ./env/bin/activate && ./env/bin/activate`|
 | Windows (Powershell/CMD)| Run `./env/bin/activate.bat`
 
-##### Install Python Modules
+##### *Install Python Modules*
 
 Run `pip3 install -r requirements.txt`
 
-##### Create config.py
-Make a file named config with the py extension. Populate it's content with the following.
-```python
-class config:
-    token = input("Discord Bot Token:")
-    giphy_token = input("Giphy Token:")
-    prefix = input("Bot prefix:")
-    sqlHost = input("My SQL server ip:")
-    sqlUser = input("My SQL database user")
-    sqlPassword = input("My SQL database user password:")
-    sqlDatabase = input("My SQL database password:")
-```
+##### *Optional: Modify config.py*
+By default you will be prompted to enter all required variables, if you seek automation you may declare them in [config.py](/Games/TicTacToe/config.py). Example.
+
+Change `token = input("Discord Bot Token:")` to `token = "UAdaushd218123"`
+
+##### *Run the bot*
+
+The running file is [main.py](/Games/TicTacToe/main.py). To execute this use `python3 main.py`.
+
 
 ### Setup Method - Using the setup script ( Linux Only )
 
@@ -105,7 +104,7 @@ class config:
 > > `SQLPASS`	    *- Contains password for SQL Database*
 > > `SQLDATABASE`	*- Contains database name*
 > 
-> To help put it into perspective content here is the default [config.py](/Games/TicTacToe/config.py).
+> To help put it into perspective content here is the default [/Games/TicTacToe/config.py](/Games/TicTacToe/config.py).
 >```python
 >class config:
 >    token = input("Discord Bot Token:")                         # Discord Bot Token
