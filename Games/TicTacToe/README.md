@@ -13,7 +13,7 @@ TicTacToe bot contains the following commands.
 
 This repository was originally created as a fun way to play around with Python, Discord.py and MySQL. 
 
-At this point it's maintaince is only done irregularly. New features will be added when I need to refresh my programming skills.
+Updates will occur irregularly and at a whim. New features will be added when I need to refresh my programming skills.
 
 ### Operating System Compatability
 This bot should work as long as you have Python and an SQL server. This has currently been tested on the following:

@@ -1,3 +1,7 @@
+FROM hypriot/rpi-mysql
+WORKDIR /root
+RUN 
+
 FROM python
 WORKDIR /root
 COPY requirements.txt requirements.txt
