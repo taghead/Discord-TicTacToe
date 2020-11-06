@@ -33,28 +33,6 @@ Dependencies should automatically be installed using the provided installation s
 
 You must also have bot a Discord Bot Token https://discord.com/developers/docs/intro and GIPHY API token https://developers.giphy.com/docs/api/
 
-### Environment Variables
-> The following variables are optional to declare, though doing so will prevent prompts from occuring when running the application. Applying the variables will allow the [setup.sh](/Games/TicTacToe/setup.sh) to set the values in [config.py](/Games/TicTacToe/config.py). 
-> > `DISCORDTOKEN`  *- Contains discord bot api token*
-> > `GIPHYTOKEN` 	*- Contains giphy api token*
-> > `PREFIX`        *- Bot prefix*
-> > `SQLHOST` 	    *- Contains SQL host ip*
-> > `SQLUSER`	    *- Contains username for SQL Database*
-> > `SQLPASS`	    *- Contains password for SQL Database*
-> > `SQLDATABASE`	*- Contains database name*
-> 
-> To help put it into perspective content here is the default [config.py](/Games/TicTacToe/config.py).
->```python
->class config:
->    token = input("Discord Bot Token:")                         # Discord Bot Token
->    giphy_token = input("Giphy Token:")                         # Giphy API token
->    prefix = input("Bot prefix:")                               # Replace this with your desired prefix
->    sqlHost = input("My SQL server ip:")                        # Manually installed SQL onto another device
->    sqlUser = input("My SQL database user")                     # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
->    sqlPassword = input("My SQL database user password:")       # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
->    sqlDatabase = input("My SQL database password:")            # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
->```
-
 ### Setup Method - Manual 
 
 ##### *Obtain source files*
@@ -115,6 +93,29 @@ class config:
 ```
 
 ### Setup Method - Using the setup script ( Linux Only )
+
+
+##### Environment Variables
+> The following variables are optional to declare, though doing so will prevent prompts from occuring when running the application. Applying the variables will allow the [setup.sh](/Games/TicTacToe/setup.sh) to set the values in [config.py](/Games/TicTacToe/config.py). 
+> > `DISCORDTOKEN`  *- Contains discord bot api token*
+> > `GIPHYTOKEN` 	*- Contains giphy api token*
+> > `PREFIX`        *- Bot prefix*
+> > `SQLHOST` 	    *- Contains SQL host ip*
+> > `SQLUSER`	    *- Contains username for SQL Database*
+> > `SQLPASS`	    *- Contains password for SQL Database*
+> > `SQLDATABASE`	*- Contains database name*
+> 
+> To help put it into perspective content here is the default [config.py](/Games/TicTacToe/config.py).
+>```python
+>class config:
+>    token = input("Discord Bot Token:")                         # Discord Bot Token
+>    giphy_token = input("Giphy Token:")                         # Giphy API token
+>    prefix = input("Bot prefix:")                               # Replace this with your desired prefix
+>    sqlHost = input("My SQL server ip:")                        # Manually installed SQL onto another device
+>    sqlUser = input("My SQL database user")                     # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
+>    sqlPassword = input("My SQL database user password:")       # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
+>    sqlDatabase = input("My SQL database password:")            # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
+>```
 
 Once the environement variables are declared run the script.
 ```shell
