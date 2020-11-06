@@ -31,6 +31,7 @@ Dependencies should automatically be installed using the provided installation s
     - giphy_client      (Python Module)
     - mysql-connector   (Python Module)
 
+You must also have bot a Discord Bot Token https://discord.com/developers/docs/intro and GIPHY API token https://developers.giphy.com/docs/api/
 
 ### Environment Variables
 > The following variables are optional to declare, though doing so will prevent prompts from occuring when running the application. Applying the variables will allow the [setup.sh](/Games/TicTacToe/setup.sh) to set the values in [config.py](/Games/TicTacToe/config.py). 
@@ -54,6 +55,64 @@ Dependencies should automatically be installed using the provided installation s
 >    sqlDatabase = input("My SQL database password:")            # Change only if you changed #practiceCreateUsers.sql and practiceCreate.sql
 >```
 
+### Setup Method - Manual 
+
+##### *Obtain source files*
+
+Option 1: WGET
+
+```powershell
+wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/archive/master/TagheadDiscordBotCollection-master.zip
+```
+
+Extract the files
+
+Option 2: GIT ( Requires git to be installed )
+
+```shell
+mkdir "Bot"
+cd "Bot"
+git init
+git remote add -f origin https://gitlab.com/Taghead/TagheadDiscordBotCollection.git
+git config core.sparseCheckout true
+echo "Games/TicTacToe" >> .git/info/sparse-checkout
+git pull origin master
+```
+
+##### *Install dependencies*
+
+
+| Operating System | Instructions 
+| ------ | ------ |
+| Windows| Download [Python 3.7](https://www.python.org/downloads/windows/) (ensure pip is ticked) and Install virtualenv through `pip install virtualenv`
+| Linux (Ubuntu/Debian)| Run `apt-get install -y python3-pip python3-venv`
+
+##### *Optional: Create Virtual Environment*
+
+This assumes your current directory is /path/to/Bot/Games/TicTacToe.
+
+| Operating System (Environment) | Instructions 
+| ------ | ------ |
+| Linux (Ubuntu/Debian Bash)| Run `source ./env/bin/activate`|
+| Linux (Ubuntu/Debian ZSH/SH)| Run `chmod +x ./env/bin/activate && ./env/bin/activate`|
+| Windows (Powershell/CMD)| Run `./env/bin/activate.bat`
+
+##### Install Python Modules
+
+Run `pip3 install -r requirements.txt`
+
+##### Create config.py
+Make a file named config with the py extension. Populate it's content with the following.
+```python
+class config:
+    token = input("Discord Bot Token:")
+    giphy_token = input("Giphy Token:")
+    prefix = input("Bot prefix:")
+    sqlHost = input("My SQL server ip:")
+    sqlUser = input("My SQL database user")
+    sqlPassword = input("My SQL database user password:")
+    sqlDatabase = input("My SQL database password:")
+```
 
 ### Setup Method - Using the setup script ( Linux Only )
 
