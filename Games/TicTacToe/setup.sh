@@ -143,6 +143,7 @@ do
             echo "Not using virtual environment"
             DONT_USE_VIRTUAL_ENVIRONMENT=1
             shift
+            ;;
         -h|--help)
             echo """
             \nEnvironment Variables
