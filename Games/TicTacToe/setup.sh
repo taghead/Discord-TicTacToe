@@ -8,6 +8,8 @@ IGNORE_ROOT=0
 SKIP_CHECK_ENVIRONMENT_VARIABLES=0
 SETUP_PATH_DIRECTORY="$HOME/TagheadDiscordBotCollection"
 START_AFTER_INSTALL=0
+SKIP_PACKAGES_INSTALLS=0
+DONT_USE_VIRTUAL_ENVIRONMENT=0
 
 # Functions
 applyconfig()
@@ -132,6 +134,15 @@ do
             python "$SETUP_PATH_DIRECTORY/$PATH_TO_FILES/main.py"
             shift
             ;;
+        -spi|--skip-package-install)
+            echo "Skipping install of python, modules and venv"
+            SKIP_PACKAGES_INSTALLS=1
+            shift
+            ;;
+        -duve|--dont-use-virtual-environment)
+            echo "Not using virtual environment"
+            DONT_USE_VIRTUAL_ENVIRONMENT=1
+            shift
         -h|--help)
             echo """
             \nEnvironment Variables
@@ -139,23 +150,25 @@ do
                 declaring a variable will default it to an input prompt
                 on every run.
                     DISCORDTOKEN 	- Contains discord bot api token
-                    GIPHYTOKEN 	- Contains giphy api token
-                    PREFIX        - Bot prefix
+                    GIPHYTOKEN 	    - Contains giphy api token
+                    PREFIX          - Bot prefix
                     SQLHOST 	    - Contains SQL host ip
-                    SQLUSER	    - Contains username for SQL Database
-                    SQLPASS	    - Contains password for SQL Database
-                    SQLDATABASE	- Contains database name
+                    SQLUSER	        - Contains username for SQL Database
+                    SQLPASS	        - Contains password for SQL Database
+                    SQLDATABASE	    - Contains database name
 
             \nARGUMENTS
-                -ir     --ignore-root       | Ignores user privileges check
-                -se     --skip-environment  | Skips environment variables check
-                -p=     --path=             | Set install path. Example -p=/opt/bot
-                -s      --start             | Start application after install
-                -snc    --start-new-config  | Start applications and re-check environment
-                                            | variables for new values to apply to the
-                                            | configuration files.
+                -ir     --ignore-root                   | Ignores user privileges check
+                -se     --skip-environment              | Skips environment variables check
+                -p=     --path=                         | Set install path. Example -p=/opt/bot
+                -s      --start                         | Start application after install
+                -snc    --start-new-config              | Start applications and re-check environment
+                                                        | variables for new values to apply to the
+                                                        | configuration files.
+                -spi    --skip-package-install          | Skips install of python, modules and venv
+                -duve   --dont-use-virtual-environment  | Does not use python virtual environment
                                             
-                -h      --help              | Helps
+                -h      --help                          | Helps
             """
             exit 0
             shift
@@ -198,13 +211,17 @@ unset SQLDATABASE
 
 cd "$SETUP_PATH_DIRECTORY/$PATH_TO_FILES"
 
-apt-get install -y python3-pip python3-venv
-python3 -m venv env
-if [ "$SHELL"=="/bin/zsh" ]; then chmod +x ./env/bin/activate && ./env/bin/activate
-elif [ "$SHELL"=="/bin/sh" ]; then chmod +x ./env/bin/activate && ./env/bin/activate
-elif [ "$SHELL"=="/bin/bash" ]; then source ./env/bin/activate
-else source ./env/bin/activate
+if [ "$SKIP_PACKAGES_INSTALLS" -eq 0 ] then apt-get install -y python3-pip python3-venv
+if [ "DONT_USE_VIRTUAL_ENVIRONMENT" -eq 0 ]
+then
+    python3 -m venv env
+    if [ "$SHELL"=="/bin/zsh" ]; then chmod +x ./env/bin/activate && ./env/bin/activate
+    elif [ "$SHELL"=="/bin/sh" ]; then chmod +x ./env/bin/activate && ./env/bin/activate
+    elif [ "$SHELL"=="/bin/bash" ]; then source ./env/bin/activate
+    else source ./env/bin/activate
+    fi
 fi
-pip3 install -r requirements.txt
+
+if [ "$SKIP_PACKAGES_INSTALLS" -eq 0 ] then pip3 install -r requirements.txt
 
 if [ "$START_AFTER_INSTALL" -eq 1 ]; then python main.py; fi
