@@ -143,6 +143,7 @@ do
             echo "Not using virtual environment"
             DONT_USE_VIRTUAL_ENVIRONMENT=1
             shift
+            ;;
         -h|--help)
             echo """
             \nEnvironment Variables
@@ -211,8 +212,8 @@ unset SQLDATABASE
 
 cd "$SETUP_PATH_DIRECTORY/$PATH_TO_FILES"
 
-if [ "$SKIP_PACKAGES_INSTALLS" -eq 0 ] then apt-get install -y python3-pip python3-venv
-if [ "DONT_USE_VIRTUAL_ENVIRONMENT" -eq 0 ]
+if [ "$SKIP_PACKAGES_INSTALLS" -eq 0 ]; then apt-get install -y python3-pip python3-venv; fi
+if [ "$DONT_USE_VIRTUAL_ENVIRONMENT" -eq 0 ];
 then
     python3 -m venv env
     if [ "$SHELL"=="/bin/zsh" ]; then chmod +x ./env/bin/activate && ./env/bin/activate
@@ -222,6 +223,6 @@ then
     fi
 fi
 
-if [ "$SKIP_PACKAGES_INSTALLS" -eq 0 ] then pip3 install -r requirements.txt
+if [ "$SKIP_PACKAGES_INSTALLS" -eq 0 ]; then pip3 install -r requirements.txt; fi
 
 if [ "$START_AFTER_INSTALL" -eq 1 ]; then python main.py; fi
