@@ -1,7 +1,5 @@
 FROM python:3.7.9-alpine
-WORKDIR /root
-COPY requirements.txt requirements.txt
-RUN apk add --no-cache git && apk add --no-cache build-base && pip install -r requirements.txt
-COPY setup.sh setup.sh
-RUN chmod +x /root/setup.sh && /root/setup.sh
+COPY requirements.txt /root/requirements.txt
+COPY setup.sh /root/setup.sh
+RUN apk add --no-cache build-base git && pip install -r /root/requirements.txt && chmod +x /root/setup.sh && /root/setup.sh && apk del build-base git
 CMD ["/root/setup.sh", "--start-new-config", "--skip-package-install", "--dont-use-virtual-environment"]
