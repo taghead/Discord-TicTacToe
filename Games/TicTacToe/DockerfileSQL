@@ -1,0 +1,19 @@
+FROM yobasystems/alpine-mariadb
+ENV MYSQL_DATABASE="TicTacToe"
+ENV MYSQL_USER="User"
+ENV MYSQL_PASSWORD="Password"
+ENV MYSQL_ROOT_PASSWORD="Password"
+ENV SQLHOST="127.0.0.1"
+ENV SQLUSER="$MYSQL_USER"
+ENV SQLPASS="$MYSQL_PASSWORD"
+ENV SQLDATABASE="$MYSQL_DATABASE"
+RUN     set -xe \
+        && wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/requirements.txt -P /root/ \
+        && wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/setup.sh -P /root/ \
+        && apk add --no-cache build-base git \
+        && apk add --update --no-cache python3 python3-dev && ln -sf python3 /usr/bin/python && python3 -m ensurepip && pip3 install --no-cache --upgrade pip setuptools \
+        && pip3 install --no-cache-dir -r /root/requirements.txt \
+        && chmod +x /root/setup.sh && /root/setup.sh \
+        && apk del build-base git \
+        && sed -i '2 i /scripts/run.sh >/dev/null &' /root/setup.sh && sleep 5
+ENTRYPOINT ["/root/setup.sh", "--start-new-config", "--skip-package-install", "--dont-use-virtual-environment"]
