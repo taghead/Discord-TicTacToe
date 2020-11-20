@@ -15,6 +15,12 @@ This repository was originally created as a fun way to play around with Python, 
 
 Updates will occur irregularly and at a whim. New features will be added when I need to refresh my programming skills.
 
+### Important Notes
+
+Only the Docker with SQL install method has a sql server installed and populated with [/Games/TicTacToe/tables.sql](/Games/TicTacToe/tables.sql).
+
+All other methods will assume a database has been setup and populated with [/Games/TicTacToe/tables.sql](/Games/TicTacToe/tables.sql).
+
 ### Operating System Compatability
 This bot should work as long as you have Python and an SQL server. This has currently been tested on the following:
 - Ubuntu
@@ -33,7 +39,7 @@ Dependencies should automatically be installed using the provided installation s
 
 You must also have bot a Discord Bot Token https://discord.com/developers/docs/intro and GIPHY API token https://developers.giphy.com/docs/api/
 
-### Setup Method - Manual 
+### Setup Method - Manual
 
 ##### *Obtain source files*
 
@@ -125,12 +131,15 @@ chmod +x /tmp/setup.sh
 
 ### Setup Method - Docker
 
-##### *Get required files*
+##### *Get Dockerfile*
+
+Dockerfile ( Without SQL Database ) 
 ```shell
 wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/Dockerfile
-wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/requirements.txt
-wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/setup.sh
-
+```
+or Dockerfile ( With SQL Database )
+```shell
+wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/DockerfileSQL -O Dockerfile
 ```
 
 ##### *Build the docker image*
