@@ -15,5 +15,7 @@ RUN     set -xe \
         && pip3 install --no-cache-dir -r /root/requirements.txt \
         && chmod +x /root/setup.sh && /root/setup.sh \
         && apk del build-base git \
-        && sed -i '2 i nohup /scripts/run.sh > /dev/null 2>&1 &' /root/setup.sh
+        && sed -i '2 i nohup /scripts/run.sh > /dev/null 2>&1 &' /root/setup.sh \
+        && wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/tables.sql -O /root/tables.sql \
+        && sed -i '3 i while [ $(ps -o args -ef | grep "^/usr/bin/mysqld --user=mysql --console --skip-name-resolve --skip-networking=0" -c) -eq 0 ]; do sleep 3; echo Waiting for MariaDB; d$        && sed -i '4 i mariadb "$MYSQL_DATABASE" --user=root --password="$MYSQL_ROOT_PASSWORD" -e "source /root/tables.sql"' /root/setup.sh
 ENTRYPOINT ["/root/setup.sh", "--start-new-config", "--skip-package-install", "--dont-use-virtual-environment"]
