@@ -48,7 +48,7 @@ Option 1: WGET
 Using wget will require you to extract the files manually
 
 ```powershell
-wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/archive/master/TagheadDiscordBotCollection-master.zip
+wget https://github.com/taghead/Simply-Some-Discord-Bots/archive/master.zip
 ```
 
 
@@ -59,7 +59,7 @@ Option 2: GIT ( Requires git to be installed )
 mkdir "Bot"
 cd "Bot"
 git init
-git remote add -f origin https://gitlab.com/Taghead/TagheadDiscordBotCollection.git
+git remote add -f origin https://github.com/taghead/Simply-Some-Discord-Bots.git
 git config core.sparseCheckout true
 echo "Games/TicTacToe" >> .git/info/sparse-checkout
 git pull origin master
@@ -124,7 +124,7 @@ The running file is [main.py](/Games/TicTacToe/main.py). To execute this use `py
 
 Once the environement variables are declared run the script.
 ```shell
-wget -O /tmp/setup.sh https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/setup.sh
+wget -O /tmp/setup.sh https://raw.githubusercontent.com/taghead/Simply-Some-Discord-Bots/master/Games/TicTacToe/setup.sh
 chmod +x /tmp/setup.sh
 /tmp/setup.sh
 ```
@@ -135,11 +135,11 @@ chmod +x /tmp/setup.sh
 
 Dockerfile ( Without SQL Database ) 
 ```shell
-wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/Dockerfile
+wget https://raw.githubusercontent.com/taghead/Simply-Some-Discord-Bots/master/Games/TicTacToe/Dockerfile
 ```
 or Dockerfile ( With SQL Database )
 ```shell
-wget https://gitlab.com/Taghead/TagheadDiscordBotCollection/-/raw/master/Games/TicTacToe/DockerfileSQL -O Dockerfile
+wget https://raw.githubusercontent.com/taghead/Simply-Some-Discord-Bots/master/Games/TicTacToe/DockerfileSQL -O Dockerfile
 ```
 
 ##### *Build the docker image*
