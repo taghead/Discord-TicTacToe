@@ -1,4 +1,4 @@
-### About TicTacToe bot
+# About TicTacToe bot
 
 TicTacToe bot contains the following commands.
 
@@ -15,13 +15,14 @@ This repository was originally created as a fun way to play around with Python, 
 
 Updates will occur irregularly and at a whim. New features will be added when I need to refresh my programming skills.
 
-### Important Notes
+
+## Important Notes
 
 Only the Docker with SQL install method has a sql server installed and populated with [/Games/TicTacToe/tables.sql](/Games/TicTacToe/tables.sql).
 
 All other methods will assume a database has been setup and populated with [/Games/TicTacToe/tables.sql](/Games/TicTacToe/tables.sql).
 
-### Operating System Compatability
+## Operating System Compatability
 This bot should work as long as you have Python and an SQL server. This has currently been tested on the following:
 - Ubuntu
 - Debian
@@ -30,7 +31,7 @@ This bot should work as long as you have Python and an SQL server. This has curr
 
 It can be assumed that this will likely work on most Ubuntu and Debian distros.
 
-### Dependencies
+## Dependencies
 Dependencies should automatically be installed using the provided installation scripts setup.sh but just in case here is a list.
 - Python 3
     - discord.py        (Python Module)
@@ -39,9 +40,13 @@ Dependencies should automatically be installed using the provided installation s
 
 You must also have bot a Discord Bot Token https://discord.com/developers/docs/intro and GIPHY API token https://developers.giphy.com/docs/api/
 
-### Setup Method - Manual
+## Setting up the bot
 
-##### *Obtain source files*
+### Running on Linux/Windows 
+
+#### *Obtain source files*
+
+Use either WGET or GIT to obtain the source files. 
 
 Option 1: WGET
 
@@ -50,8 +55,6 @@ Using wget will require you to extract the files manually
 ```powershell
 wget https://github.com/taghead/Simply-Some-Discord-Bots/archive/master.zip
 ```
-
-
 
 Option 2: GIT ( Requires git to be installed )
 
@@ -65,7 +68,7 @@ echo "Games/TicTacToe" >> .git/info/sparse-checkout
 git pull origin master
 ```
 
-##### *Install dependencies*
+#### *Install dependencies*
 
 
 | Operating System | Instructions 
@@ -73,7 +76,7 @@ git pull origin master
 | Windows| Download [Python 3.7](https://www.python.org/downloads/windows/) (ensure pip is ticked) and Install virtualenv through `pip install virtualenv`
 | Linux (Ubuntu/Debian)| Run `apt-get install -y python3-pip python3-venv`
 
-##### *Optional: Create Virtual Environment*
+#### *Optional: Create Virtual Environment*
 
 This assumes your current directory is /path/to/Bot/Games/TicTacToe.
 
@@ -83,24 +86,24 @@ This assumes your current directory is /path/to/Bot/Games/TicTacToe.
 | Linux (Ubuntu/Debian ZSH/SH)| Run `chmod +x ./env/bin/activate && ./env/bin/activate`|
 | Windows (Powershell/CMD)| Run `./env/bin/activate.bat`
 
-##### *Install Python Modules*
+#### *Install Python Modules*
 
 Run `pip3 install -r requirements.txt`
 
-##### *Optional: Modify config.py*
+#### *Optional: Modify config.py*
 By default you will be prompted to enter all required variables, if you seek automation you may declare them in [config.py](/Games/TicTacToe/config.py). Example.
 
 Change `token = input("Discord Bot Token:")` to `token = "UAdaushd218123"`
 
-##### *Run the bot*
+#### *Run the bot*
 
 The running file is [main.py](/Games/TicTacToe/main.py). To execute this use `python3 main.py`.
 
 
-### Setup Method - Using the setup script ( Linux Only )
+### Convenience Script ( Linux Only )
 
 
-##### Environment Variables
+#### Environment Variables
 > The following variables are optional to declare, though doing so will prevent prompts from occuring when running the application. Applying the variables will allow the [setup.sh](/Games/TicTacToe/setup.sh) to set the values in [config.py](/Games/TicTacToe/config.py). 
 > > `DISCORDTOKEN`  *- Contains discord bot api token*
 > > `GIPHYTOKEN` 	*- Contains giphy api token*
@@ -129,9 +132,9 @@ chmod +x /tmp/setup.sh
 /tmp/setup.sh
 ```
 
-### Setup Method - Docker
+### Building and running for Docker
 
-##### *Get Dockerfile*
+#### *Get Dockerfile*
 
 Dockerfile ( Without SQL Database ) 
 ```shell
@@ -142,12 +145,12 @@ or Dockerfile ( With SQL Database )
 wget https://raw.githubusercontent.com/taghead/Simply-Some-Discord-Bots/master/Games/TicTacToe/DockerfileSQL -O Dockerfile
 ```
 
-##### *Build the docker image*
+#### *Build the docker image*
 ```shell
 docker build . -t ttt_discord_bot:latest
 ```
 
-##### *Run the docker image and apply environment variables*
+#### *Run the docker image and apply environment variables*
 
 In this step you will be passing the following variables into the docker container
 
@@ -164,8 +167,3 @@ Run the following ( replace the agular brackets <...> with your value.)
      -e SQLDATABASE=<SQL Database Name> \
      ttt_discord_bot:latest
  ```
-
-
-### Know Issues
-
-- SQL Server configuration requires refactoring to work. 
