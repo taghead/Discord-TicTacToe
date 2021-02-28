@@ -15,6 +15,70 @@ This repository was originally created as a fun way to play around with Python, 
 
 Updates will occur irregularly and at a whim. New features will be added when I need to refresh my programming skills.
 
+## TLDR 
+
+### Run with Linux:
+```shell
+wget -O /tmp/setup.sh https://raw.githubusercontent.com/taghead/Simply-Some-Discord-Bots/master/Games/TicTacToe/setup.sh
+chmod +x /tmp/setup.sh
+/tmp/setup.sh
+```
+
+[Read more here](#42-option-b-linux-convenience-script)
+
+### Run with Windows: 
+1. Install [Python 3.7](https://www.python.org/downloads/windows/) (ensure pip is ticked)
+2. Install virtualenv through powershell `pip install virtualenv`
+3. Install [Git](https://git-scm.com/downloads)
+4. Run the following in powershell
+```shell
+mkdir "Bot"
+cd "Bot"
+git init
+git remote add -f origin https://github.com/taghead/Simply-Some-Discord-Bots.git
+git config core.sparseCheckout true
+echo "Games/TicTacToe" >> .git/info/sparse-checkout
+git pull origin master
+```
+5. Activate the virtualenv by running `./env/bin/activate.bat` recursivly from the bot folder.
+6. Install Python dependencies `pip3 install -r requirements.txt`
+7. Run the bot `python3 main.py` and follow the prompts. 
+
+[Read more here](#41-option-a-linuxwindows)
+
+### Run with Docker:
+
+
+| Tag| Description |
+| --- | --- |
+| `taghead/discord-bot-tictactoe:latest` | Contains a self contained SQL server and the app |
+| `taghead/discord-bot-tictactoe:client` | Only contains the app. Expected to be used with external SQL server. |
+
+taghead/discord-bot-tictactoe:latest
+```
+docker run -it \ 
+     -e DISCORDTOKEN=<Discord Token Here> \
+     -e GIPHYTOKEN=<Giphy Token Here> \
+     -e PREFIX=<Bot Prefix Here>  \
+     taghead/discord-bot-tictactoe:client
+```
+
+taghead/discord-bot-tictactoe:client
+```
+ docker run -it \ 
+     -e DISCORDTOKEN=<Discord Token Here> \
+     -e GIPHYTOKEN=<Giphy Token Here> \
+     -e PREFIX=<Bot Prefix Here> \
+     -e SQLHOST=<SQL Host ip address here> \
+     -e SQLUSER=<Username for SQL Database here> \
+     -e SQLPASS=<Password for SQL Database here> \
+     -e SQLDATABASE=<SQL Database Name> \
+     taghead/discord-bot-tictactoe:latest
+```
+
+[Read more here](https://hub.docker.com/repository/docker/taghead/discord-bot-tictactoe)
+
+  
 # Table of Content
 <!-- TOC -->
 
